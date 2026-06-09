@@ -48,6 +48,14 @@
 
 .cardImageWrap { overflow: hidden; }
 
+.cardImg {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.card:hover .cardImg { transform: scale(1.04); }
+
 /* Placeholder */
 .placeholder {
   width: 100%;

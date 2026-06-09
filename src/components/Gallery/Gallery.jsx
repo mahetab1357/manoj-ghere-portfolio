@@ -17,26 +17,26 @@ const BG_GRADIENTS = {
 };
 
 const GALLERY_DATA = [
-  { title:'National Championship',         meta:'Karate • 2019',           tag:'Competition',  size:'tall'   },
-  { title:'Gold Medal Moment',             meta:'National Games • 2020',    tag:'Competition',  size:'wide'   },
-  { title:'Morning River Training',        meta:'Latur • 2022',             tag:'Training',     size:'square' },
-  { title:'2nd Dan Certification',         meta:'Taekwondo • 2018',         tag:'Certificates', size:'tall'   },
-  { title:'Girls Empowerment Camp',        meta:'Maharashtra • 2023',       tag:'Students',     size:'wide'   },
-  { title:'Wushu Form Practice',           meta:'University • 2021',        tag:'Training',     size:'square' },
-  { title:'Government Camp Inauguration',  meta:'Latur • 2022',             tag:'Camps',        size:'wide'   },
-  { title:'Karate Book of Records',        meta:'India • 2020',             tag:'Certificates', size:'tall'   },
-  { title:'Student Tournament',            meta:'District Level • 2023',    tag:'Students',     size:'square' },
-  { title:'Kudo District Championship',    meta:'Latur • 2021',             tag:'Competition',  size:'tall'   },
-  { title:'Dawn Mountain Training',        meta:'Sahyadri • 2022',          tag:'Training',     size:'wide'   },
-  { title:'Taekwondo Association Meet',    meta:'Latur • 2023',             tag:'Camps',        size:'square' },
-  { title:'5000 Students Milestone',       meta:'Maharashtra • 2023',       tag:'Students',     size:'wide'   },
-  { title:'Judo Foundation Course',        meta:'University • 2020',        tag:'Training',     size:'tall'   },
-  { title:'Black Belt Ceremony',           meta:'Taekwondo • 2018',         tag:'Certificates', size:'square' },
-  { title:'Karate 2nd Dan Award',          meta:'National Board • 2019',    tag:'Certificates', size:'wide'   },
-  { title:'Inter-University Championship', meta:'Maharashtra • 2022',       tag:'Competition',  size:'tall'   },
-  { title:'Camp Closing Ceremony',         meta:'Government • 2023',        tag:'Camps',        size:'square' },
-  { title:'Outdoor Wushu Session',         meta:'Nature Camp • 2021',       tag:'Training',     size:'wide'   },
-  { title:'Young Warriors Batch',          meta:'Latur Academy • 2023',     tag:'Students',     size:'tall'   },
+  { title:'National Championship',         meta:'Karate • 2019',           tag:'Competition',  size:'tall',   img:'/gallery/p1.jpg'  },
+  { title:'Gold Medal Moment',             meta:'National Games • 2020',    tag:'Competition',  size:'wide',   img:'/gallery/p2.jpg'  },
+  { title:'Morning River Training',        meta:'Latur • 2022',             tag:'Training',     size:'square', img:'/gallery/p3.jpg'  },
+  { title:'2nd Dan Certification',         meta:'Taekwondo • 2018',         tag:'Certificates', size:'tall',   img:'/gallery/p4.jpg'  },
+  { title:'Girls Empowerment Camp',        meta:'Maharashtra • 2023',       tag:'Students',     size:'wide',   img:'/gallery/p5.jpg'  },
+  { title:'Wushu Form Practice',           meta:'University • 2021',        tag:'Training',     size:'square', img:'/gallery/p6.jpg'  },
+  { title:'Government Camp Inauguration',  meta:'Latur • 2022',             tag:'Camps',        size:'wide',   img:'/gallery/p7.jpg'  },
+  { title:'Karate Book of Records',        meta:'India • 2020',             tag:'Certificates', size:'tall',   img:'/gallery/p8.jpg'  },
+  { title:'Student Tournament',            meta:'District Level • 2023',    tag:'Students',     size:'square', img:'/gallery/p9.jpg'  },
+  { title:'Kudo District Championship',    meta:'Latur • 2021',             tag:'Competition',  size:'tall',   img:'/gallery/p10.jpg' },
+  { title:'Dawn Mountain Training',        meta:'Sahyadri • 2022',          tag:'Training',     size:'wide',   img:'/gallery/p11.jpg' },
+  { title:'Taekwondo Association Meet',    meta:'Latur • 2023',             tag:'Camps',        size:'square', img:'/gallery/p12.jpg' },
+  { title:'5000 Students Milestone',       meta:'Maharashtra • 2023',       tag:'Students',     size:'wide',   img:'/gallery/p13.jpg' },
+  { title:'Judo Foundation Course',        meta:'University • 2020',        tag:'Training',     size:'tall',   img:'/gallery/p14.jpg' },
+  { title:'Black Belt Ceremony',           meta:'Taekwondo • 2018',         tag:'Certificates', size:'square', img:'/gallery/p15.jpg' },
+  { title:'Karate 2nd Dan Award',          meta:'National Board • 2019',    tag:'Certificates', size:'wide',   img:'/gallery/p16.jpg' },
+  { title:'Inter-University Championship', meta:'Maharashtra • 2022',       tag:'Competition',  size:'tall',   img:'/gallery/p17.jpg' },
+  { title:'Camp Closing Ceremony',         meta:'Government • 2023',        tag:'Camps',        size:'square', img:'/gallery/p18.jpg' },
+  { title:'Outdoor Wushu Session',         meta:'Nature Camp • 2021',       tag:'Training',     size:'wide',   img:'/gallery/p19.jpg' },
+  { title:'Young Warriors Batch',          meta:'Latur Academy • 2023',     tag:'Students',     size:'tall',   img:'/gallery/p20.jpg' },
 ];
 
 const INITIAL_COUNT = 6;
@@ -105,16 +105,18 @@ export default function Gallery() {
             aria-label={`Open ${card.title}`}
           >
             <div className={styles.cardImageWrap}>
-              <div className={styles.placeholder} style={{ background: BG_GRADIENTS[card.tag] }}>
-                <span className={styles.placeholderKanji}>{KANJI_MAP[card.tag]}</span>
-              </div>
-            </div>
-            <div className={styles.cardCaption}>
-              <h3 className={styles.cardTitle}>{card.title}</h3>
-              <div style={{ display:'flex', gap:'0.5rem', alignItems:'center' }}>
-                <span className={styles.cardMeta}>{card.meta}</span>
-                <span className={styles.cardTag}>{card.tag}</span>
-              </div>
+              {card.img ? (
+                <img
+                  src={card.img}
+                  alt={card.title}
+                  className={styles.cardImg}
+                  loading="lazy"
+                />
+              ) : (
+                <div className={styles.placeholder} style={{ background: BG_GRADIENTS[card.tag] }}>
+                  <span className={styles.placeholderKanji}>{KANJI_MAP[card.tag]}</span>
+                </div>
+              )}
             </div>
           </article>
         ))}

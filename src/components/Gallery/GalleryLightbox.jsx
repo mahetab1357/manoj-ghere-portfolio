@@ -65,7 +65,12 @@ export default function GalleryLightbox({ card, index, total, onClose, onPrev, o
     <div style={s.overlay} onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div ref={boxRef} style={s.box}>
         <div style={s.imgSide}>
-          <span style={s.kanji}>{card.tag[0]}</span>
+          {card.img ? (
+            <img src={card.img} alt={card.title}
+              style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+          ) : (
+            <span style={s.kanji}>{card.tag[0]}</span>
+          )}
         </div>
         <div style={s.infoSide}>
           <button style={s.close} onClick={onClose} aria-label="Close">✕</button>
