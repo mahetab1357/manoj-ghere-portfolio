@@ -13,18 +13,9 @@ const WA_ICON = (
   </svg>
 );
 
-const IG_ICON = (
+const CALL_ICON = (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-    <rect x="2" y="2" width="20" height="20" rx="5" />
-    <circle cx="12" cy="12" r="4" />
-    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-  </svg>
-);
-
-const EMAIL_ICON = (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-    <rect x="2" y="4" width="20" height="16" rx="2" />
-    <polyline points="2,4 12,13 22,4" />
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18 2 2 0 0 1 2.96 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" strokeLinejoin="round"/>
   </svg>
 );
 
@@ -100,8 +91,8 @@ export default function Contact() {
           </div>
 
           <div data-left className={styles.infoBlock}>
-            <span className={styles.infoLabel}>{tr.contact.labels.email}</span>
-            <span className={styles.infoValue}>contactcore3innovation@gmail.com</span>
+            <span className={styles.infoLabel}>{tr.contact.labels.phone}</span>
+            <span className={styles.infoValue}>+91 82618 31413</span>
           </div>
 
           <div className={styles.dividerLine} />
@@ -134,7 +125,7 @@ export default function Contact() {
           <div className={styles.btns}>
             <a
               data-right
-              href="https://wa.me/91XXXXXXXXXX"
+              href="https://wa.me/918261831413"
               className={`${styles.btn} ${styles.btnWA}`}
               target="_blank" rel="noopener noreferrer"
             >
@@ -145,22 +136,11 @@ export default function Contact() {
 
             <a
               data-right
-              href="https://instagram.com/"
-              className={`${styles.btn} ${styles.btnIg}`}
-              target="_blank" rel="noopener noreferrer"
+              href="tel:+918261831413"
+              className={`${styles.btn} ${styles.btnCall}`}
             >
-              {IG_ICON}
-              <span className={styles.btnLabel}>{tr.contact.btns.ig}</span>
-              <span className={styles.btnArrow}>→</span>
-            </a>
-
-            <a
-              data-right
-              href="mailto:contactcore3innovation@gmail.com"
-              className={`${styles.btn} ${styles.btnEmail}`}
-            >
-              {EMAIL_ICON}
-              <span className={styles.btnLabel}>{tr.contact.btns.email}</span>
+              {CALL_ICON}
+              <span className={styles.btnLabel}>{tr.contact.btns.call}</span>
               <span className={styles.btnArrow}>→</span>
             </a>
           </div>

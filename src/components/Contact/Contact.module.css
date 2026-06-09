@@ -225,20 +225,13 @@
 .btnWA::before { background: var(--gold-pale); }
 .btnWA:hover { box-shadow: 0 8px 30px rgba(201,168,76,0.45); }
 
-/* Instagram */
-.btnIg {
+/* Call */
+.btnCall {
   background: transparent;
   color: var(--yin-text);
   border: 1.5px solid rgba(26,24,20,0.18);
 }
-.btnIg::before { background: var(--yin-cream); }
-
-/* Email */
-.btnEmail {
-  background: var(--yang-black);
-  color: var(--yang-text);
-}
-.btnEmail::before { background: var(--yang-charcoal); }
+.btnCall::before { background: var(--yin-cream); }
 
 .btnLabel { flex: 1; }
 .btnArrow {
