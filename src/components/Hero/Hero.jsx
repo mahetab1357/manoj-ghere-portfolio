@@ -4,13 +4,14 @@ import YinYang from '../YinYang';
 import { useLang } from '../../hooks/useLanguage';
 import styles from './Hero.module.css';
 
-// "MANOJ GHERE" — first 5 chars on dark side, space, last 5 on light side
 const LEFT_CHARS  = ['M','A','N','O','J'];
 const RIGHT_CHARS = ['G','H','E','R','E'];
 
 const TICKER_ITEMS = [
   'TAEKWONDO','태권도','KARATE','空手道','KUDO','くど','JUDO','柔道','WUSHU','武术',
 ];
+
+const isMobile = () => window.innerWidth <= 768;
 
 export default function Hero() {
   const preTitleRef = useRef(null);
@@ -25,7 +26,6 @@ export default function Hero() {
   useEffect(() => {
     const leftChars  = document.querySelectorAll(`.${styles.nameCharLeft}`);
     const rightChars = document.querySelectorAll(`.${styles.nameCharRight}`);
-    const space      = document.querySelector(`.${styles.nameSpace}`);
     const tl = gsap.timeline({ delay: 0.2 });
 
     const spinTween = gsap.to(yyRef.current, {
@@ -34,22 +34,21 @@ export default function Hero() {
 
     tl
       .to(yyRef.current, {
-        opacity: 1, scale: 1, clearProps: 'scale', duration: 0.7, ease: 'power2.out',
+        opacity: 1, duration: 0.8, ease: 'power2.out',
         onComplete: () => spinTween.play(),
       })
-      .to(preTitleRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+      .to(preTitleRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
       .fromTo(leftChars,
         { y: 80, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, ease: 'power4.out', stagger: 0.05 },
         '-=0.3'
       )
-      .to(space, { opacity: 1, duration: 0.1 }, '-=0.4')
       .fromTo(rightChars,
         { y: -80, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, ease: 'power4.out', stagger: 0.05 },
-        '-=0.7'
+        '-=0.65'
       )
-      .to(ruleRef.current, { width: '260px', duration: 0.8, ease: 'power2.out' }, '-=0.2')
+      .to(ruleRef.current, { width: isMobile() ? '180px' : '260px', duration: 0.8, ease: 'power2.out' }, '-=0.2')
       .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4')
       .to(subEnRef.current,    { opacity: 0.55, y: 0, duration: 0.5 }, '-=0.3')
       .to(tickerRef.current,   { opacity: 1, duration: 0.5 }, '-=0.3')
@@ -62,11 +61,17 @@ export default function Hero() {
     return () => { tl.kill(); spinTween.kill(); window.removeEventListener('scroll', onScroll); };
   }, []);
 
+  const yySize = isMobile()
+    ? Math.min(window.innerWidth * 0.85, 340)
+    : Math.min(window.innerWidth * 0.52, 600);
+
   return (
     <section className={styles.hero} id="hero" aria-label="Hero">
+      {/* Backgrounds */}
       <div className={styles.bgDark} />
       <div className={styles.bgLight} />
 
+      {/* S-curve divider — desktop only */}
       <svg className={styles.divider} viewBox="0 0 60 1000" preserveAspectRatio="none" aria-hidden="true">
         <path
           className={styles.dividerPath}
@@ -77,33 +82,37 @@ export default function Hero() {
         />
       </svg>
 
+      {/* Yin-Yang */}
       <div ref={yyRef} className={styles.yyWrap}>
-        <YinYang size={Math.min(window.innerWidth * 0.52, 600)} />
+        <YinYang size={yySize} />
       </div>
 
+      {/* Text content */}
       <div className={styles.content}>
         <p ref={preTitleRef} className={styles.preTitle}>{tr.hero.pre}</p>
 
         <h1 className={styles.name} aria-label="Manoj Ghere">
-          {LEFT_CHARS.map((ch, i) => (
-            <span key={`l${i}`} className={styles.nameCharLeft}>{ch}</span>
-          ))}
-          <span className={styles.nameSpace}>&nbsp;</span>
-          {RIGHT_CHARS.map((ch, i) => (
-            <span key={`r${i}`} className={styles.nameCharRight}>{ch}</span>
-          ))}
+          {/* MANOJ */}
+          <span className={styles.nameWord}>
+            {LEFT_CHARS.map((ch, i) => (
+              <span key={`l${i}`} className={styles.nameCharLeft}>{ch}</span>
+            ))}
+          </span>
+          {/* GHERE */}
+          <span className={styles.nameWord}>
+            {RIGHT_CHARS.map((ch, i) => (
+              <span key={`r${i}`} className={styles.nameCharRight}>{ch}</span>
+            ))}
+          </span>
         </h1>
 
         <div ref={ruleRef} className={styles.nameRule} />
 
-        <p ref={subtitleRef} className={styles.subtitle}>
-          {tr.hero.subtitle}
-        </p>
-        <p ref={subEnRef} className={styles.subtitleEn}>
-          {tr.hero.subEn}
-        </p>
+        <p ref={subtitleRef} className={styles.subtitle}>{tr.hero.subtitle}</p>
+        <p ref={subEnRef}    className={styles.subtitleEn}>{tr.hero.subEn}</p>
       </div>
 
+      {/* Ticker */}
       <div ref={tickerRef} className={styles.ticker}>
         <div className={styles.tickerTrack}>
           {[...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
@@ -112,6 +121,7 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Scroll cue */}
       <div ref={scrollRef} className={styles.scrollCue}>
         <div className={styles.mouse} />
         <span className={styles.scrollLabel}>Scroll</span>

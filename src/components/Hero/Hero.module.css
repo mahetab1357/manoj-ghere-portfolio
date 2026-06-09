@@ -5,7 +5,7 @@
   display: flex; align-items: center; justify-content: center;
 }
 
-/* Split background */
+/* ── Split backgrounds (desktop) ── */
 .bgDark {
   position: absolute; top: 0; left: 0;
   width: 50%; height: 100%;
@@ -19,7 +19,7 @@
   clip-path: polygon(20px 50%, 0 0, 100% 0, 100% 100%, 0 100%);
 }
 
-/* S-curve divider SVG */
+/* S-curve divider */
 .divider {
   position: absolute; top: 0; left: 50%;
   transform: translateX(-50%);
@@ -34,22 +34,23 @@
   50%       { d: path('M30 0 C 50 200, 10 300, 50 600 C 10 700, 50 800, 30 1000'); }
 }
 
-/* Yin-Yang — behind everything, subtle */
+/* ── Yin-Yang (desktop: centered) ── */
 .yyWrap {
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0.85);
+  transform: translate(-50%, -50%);
   z-index: 3;
   opacity: 0;
 }
 
-/* Content overlay */
+/* ── Content (desktop: centered) ── */
 .content {
   position: relative; z-index: 10;
   text-align: center;
   display: flex; flex-direction: column;
-  align-items: center; gap: 0.75rem;
-  padding: 0 1rem;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 1.5rem;
 }
 
 .preTitle {
@@ -62,51 +63,47 @@
   transform: translateY(10px);
 }
 
-/* Name row */
+/* Name */
 .name {
-  display: flex; flex-wrap: nowrap; justify-content: center;
-  gap: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.3em;
   line-height: 1;
-  filter: drop-shadow(0 2px 24px rgba(0,0,0,0.35));
+  filter: drop-shadow(0 2px 24px rgba(0,0,0,0.3));
 }
 
-/* Left chars (MANOJ) — on dark half → cream/white */
+.nameWord {
+  display: flex;
+}
+
+/* Left word (MANOJ) — cream on dark half */
 .nameCharLeft {
   display: inline-block;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3.2rem, 8.5vw, 8.5rem);
+  font-size: clamp(3rem, 8.5vw, 8.5rem);
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   opacity: 0;
   color: #F0EDE6;
-  text-shadow: 0 0 40px rgba(201,168,76,0.25);
 }
 
-/* Right chars (GHERE) — on light half → near-black */
+/* Right word (GHERE) — dark on light half */
 .nameCharRight {
   display: inline-block;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3.2rem, 8.5vw, 8.5rem);
+  font-size: clamp(3rem, 8.5vw, 8.5rem);
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   opacity: 0;
   color: #1A1814;
-  text-shadow: 0 0 40px rgba(0,0,0,0.12);
 }
 
-/* Space between MANOJ and GHERE */
-.nameSpace {
-  display: inline-block;
-  width: clamp(0.6rem, 1.5vw, 1.4rem);
-  opacity: 0;
-}
-
-/* Gold rule under name */
+/* Animated gold rule */
 .nameRule {
   width: 0;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--gold), transparent);
-  transition: width 0.8s var(--ease);
 }
 
 .subtitle {
@@ -120,14 +117,14 @@
 .subtitleEn {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.7rem;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--yang-text);
   opacity: 0;
   transform: translateY(10px);
 }
 
-/* Marquee ticker */
+/* ── Ticker ── */
 .ticker {
   position: absolute; bottom: 4rem; left: 0; right: 0;
   overflow: hidden;
@@ -150,7 +147,7 @@
 .tickerItem:nth-child(odd)  { color: var(--gold); }
 .tickerItem:nth-child(even) { color: var(--yang-text); opacity: 0.5; }
 
-/* Scroll cue */
+/* ── Scroll cue ── */
 .scrollCue {
   position: absolute; bottom: 1.5rem; left: 50%;
   transform: translateX(-50%);
@@ -179,4 +176,81 @@
   color: var(--gold);
   opacity: 0.6;
   text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════
+   MOBILE  ≤ 768px
+   Layout: full dark bg, YY top-right,
+   text left-aligned
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hero {
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+
+  /* Full dark background */
+  .bgDark {
+    width: 100%;
+    clip-path: none;
+  }
+  .bgLight  { display: none; }
+  .divider  { display: none; }
+
+  /* YY — top-right corner, large, decorative */
+  .yyWrap {
+    top: -6%;
+    right: -8%;
+    left: auto;
+    transform: none;
+    opacity: 0.9;
+    z-index: 2;
+  }
+
+  /* Content — left-aligned, sitting in lower-left */
+  .content {
+    text-align: left;
+    align-items: flex-start;
+    padding: 0 2rem 6rem;
+    width: 100%;
+    max-width: 100%;
+    z-index: 10;
+  }
+
+  .preTitle {
+    font-size: 0.6rem;
+    letter-spacing: 0.45em;
+  }
+
+  /* Name stacks vertically on mobile */
+  .name {
+    flex-direction: column;
+    gap: 0;
+    line-height: 0.92;
+  }
+
+  /* Both words cream — only dark bg on mobile */
+  .nameCharLeft {
+    font-size: clamp(3.8rem, 17vw, 6rem);
+  }
+  .nameCharRight {
+    color: #F0EDE6;
+    text-shadow: 0 0 40px rgba(201,168,76,0.2);
+    font-size: clamp(3.8rem, 17vw, 6rem);
+  }
+
+  .subtitle   { font-size: 0.85rem; letter-spacing: 0.25em; }
+  .subtitleEn { font-size: 0.65rem; letter-spacing: 0.2em; }
+
+  /* Ticker sits just above bottom */
+  .ticker { bottom: 3rem; }
+
+  .scrollCue { display: none; }
+}
+
+/* ── Small phones ≤ 380px ── */
+@media (max-width: 380px) {
+  .nameCharLeft,
+  .nameCharRight { font-size: clamp(3rem, 18vw, 4rem); }
+  .content { padding: 0 1.5rem 5rem; }
 }
