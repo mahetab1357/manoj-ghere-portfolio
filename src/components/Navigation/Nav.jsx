@@ -129,18 +129,6 @@ export default function Nav({ theme, onToggleTheme }) {
               </button>
             </li>
           ))}
-          {/* Language picker in mobile overlay */}
-          <li className={styles.overlayLangRow}>
-            {LANG_OPTIONS.map(({ code, label }) => (
-              <button
-                key={code}
-                className={`${styles.overlayLangBtn} ${lang === code ? styles.overlayLangActive : ''}`}
-                onClick={() => setLang(code)}
-              >
-                {label}
-              </button>
-            ))}
-          </li>
         </ul>
       </div>
 
