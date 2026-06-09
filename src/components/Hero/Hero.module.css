@@ -1,137 +1,135 @@
+/* ── Hero — side-by-side layout on all screen sizes ── */
 .hero {
   position: relative;
   height: 100vh; min-height: 600px;
-  overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* ── Split backgrounds (desktop) ── */
-.bgDark {
-  position: absolute; top: 0; left: 0;
-  width: 50%; height: 100%;
   background: var(--yang-black);
-  clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 50%, 100% 100%, 0 100%);
-}
-.bgLight {
-  position: absolute; top: 0; right: 0;
-  width: 50%; height: 100%;
-  background: var(--yin-white);
-  clip-path: polygon(20px 50%, 0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-/* S-curve divider */
-.divider {
-  position: absolute; top: 0; left: 50%;
-  transform: translateX(-50%);
-  height: 100%; width: 60px;
-  z-index: 2; pointer-events: none;
-}
-.dividerPath {
-  animation: scurve 6s ease-in-out infinite;
-}
-@keyframes scurve {
-  0%, 100% { d: path('M30 0 C 30 200, 30 300, 30 600 C 30 700, 30 800, 30 1000'); }
-  50%       { d: path('M30 0 C 50 200, 10 300, 50 600 C 10 700, 50 800, 30 1000'); }
-}
-
-/* ── Yin-Yang (desktop: centered) ── */
-.yyWrap {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  opacity: 0;
-}
-
-/* ── Content (desktop: centered) ── */
-.content {
-  position: relative; z-index: 10;
-  text-align: center;
-  display: flex; flex-direction: column;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0 1.5rem;
+  justify-content: space-between;
+  padding: 0 6rem;
+  gap: 3rem;
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind YY */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%; right: 10%;
+  transform: translateY(-50%);
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Left: all text content ── */
+.content {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  position: relative; z-index: 5;
+  max-width: 620px;
 }
 
 .preTitle {
   color: var(--gold);
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
-  letter-spacing: 0.6em;
+  letter-spacing: 0.55em;
   text-transform: uppercase;
   opacity: 0;
   transform: translateY(10px);
 }
 
-/* Name */
+/* Name: two lines — MANOJ / GHERE stacked */
 .name {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 0.3em;
-  line-height: 1;
-  filter: drop-shadow(0 2px 24px rgba(0,0,0,0.3));
+  flex-direction: column;
+  gap: 0;
+  line-height: 0.9;
+  filter: drop-shadow(0 2px 20px rgba(0,0,0,0.4));
 }
 
 .nameWord {
   display: flex;
 }
 
-/* Left word (MANOJ) — cream on dark half */
 .nameCharLeft {
   display: inline-block;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 8.5vw, 8.5rem);
+  font-size: clamp(3.5rem, 7vw, 7.5rem);
   font-weight: 800;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   opacity: 0;
   color: #F0EDE6;
 }
 
-/* Right word (GHERE) — dark on light half */
+/* GHERE — same cream on dark background */
 .nameCharRight {
   display: inline-block;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 8.5vw, 8.5rem);
+  font-size: clamp(3.5rem, 7vw, 7.5rem);
   font-weight: 800;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   opacity: 0;
-  color: #1A1814;
+  color: var(--gold);
 }
 
-/* Animated gold rule */
+/* Gold rule under name */
 .nameRule {
   width: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  background: linear-gradient(to right, var(--gold), transparent);
+  margin-top: 0.25rem;
 }
 
 .subtitle {
   font-family: 'Noto Serif JP', serif;
-  font-size: var(--text-sm);
+  font-size: 1rem;
   color: var(--gold);
-  letter-spacing: 0.35em;
+  letter-spacing: 0.3em;
   opacity: 0;
   transform: translateY(10px);
 }
 .subtitleEn {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.7rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--yang-text);
   opacity: 0;
   transform: translateY(10px);
 }
 
+/* ── Right: Yin-Yang ── */
+.yyWrap {
+  flex: 0 0 auto;
+  width: 320px;
+  height: 320px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 3;
+  opacity: 0;
+}
+
+/* Make SVG fill its container */
+.yyWrap svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
 /* ── Ticker ── */
 .ticker {
-  position: absolute; bottom: 4rem; left: 0; right: 0;
+  position: absolute; bottom: 3.5rem; left: 0; right: 0;
   overflow: hidden;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 0.6rem 0;
+  padding: 0.5rem 0;
   opacity: 0;
+  z-index: 5;
 }
 .tickerTrack {
   display: flex; white-space: nowrap;
@@ -149,22 +147,23 @@
 
 /* ── Scroll cue ── */
 .scrollCue {
-  position: absolute; bottom: 1.5rem; left: 50%;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  position: absolute; bottom: 0.8rem; left: 6rem;
+  display: flex; align-items: center; gap: 0.75rem;
   opacity: 0;
+  z-index: 5;
 }
 .mouse {
-  width: 22px; height: 34px;
+  width: 20px; height: 30px;
   border: 1.5px solid var(--gold);
-  border-radius: 11px;
+  border-radius: 10px;
   position: relative;
+  flex-shrink: 0;
 }
 .mouse::after {
   content: '';
   position: absolute; top: 5px; left: 50%;
   transform: translateX(-50%);
-  width: 3px; height: 6px;
+  width: 3px; height: 5px;
   background: var(--gold);
   border-radius: 2px;
   animation: bounceY 1.5s ease-in-out infinite;
@@ -178,79 +177,50 @@
   text-transform: uppercase;
 }
 
-/* ══════════════════════════════════════
-   MOBILE  ≤ 768px
-   Layout: full dark bg, YY top-right,
-   text left-aligned
-══════════════════════════════════════ */
-@media (max-width: 768px) {
-  .hero {
-    align-items: flex-end;
-    justify-content: flex-start;
-  }
-
-  /* Full dark background */
-  .bgDark {
-    width: 100%;
-    clip-path: none;
-  }
-  .bgLight  { display: none; }
-  .divider  { display: none; }
-
-  /* YY — top-right corner, large, decorative */
-  .yyWrap {
-    top: -6%;
-    right: -8%;
-    left: auto;
-    transform: none;
-    opacity: 0.9;
-    z-index: 2;
-  }
-
-  /* Content — left-aligned, sitting in lower-left */
-  .content {
-    text-align: left;
-    align-items: flex-start;
-    padding: 0 2rem 6rem;
-    width: 100%;
-    max-width: 100%;
-    z-index: 10;
-  }
-
-  .preTitle {
-    font-size: 0.6rem;
-    letter-spacing: 0.45em;
-  }
-
-  /* Name stacks vertically on mobile */
-  .name {
-    flex-direction: column;
-    gap: 0;
-    line-height: 0.92;
-  }
-
-  /* Both words cream — only dark bg on mobile */
-  .nameCharLeft {
-    font-size: clamp(3.8rem, 17vw, 6rem);
-  }
-  .nameCharRight {
-    color: #F0EDE6;
-    text-shadow: 0 0 40px rgba(201,168,76,0.2);
-    font-size: clamp(3.8rem, 17vw, 6rem);
-  }
-
-  .subtitle   { font-size: 0.85rem; letter-spacing: 0.25em; }
-  .subtitleEn { font-size: 0.65rem; letter-spacing: 0.2em; }
-
-  /* Ticker sits just above bottom */
-  .ticker { bottom: 3rem; }
-
-  .scrollCue { display: none; }
+/* ══════════════════════════════
+   TABLET  768px – 1024px
+══════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero { padding: 0 3.5rem; gap: 2.5rem; }
+  .yyWrap { width: 260px; height: 260px; }
+  .scrollCue { left: 3.5rem; }
 }
 
-/* ── Small phones ≤ 380px ── */
-@media (max-width: 380px) {
+/* ══════════════════════════════
+   MOBILE  ≤ 768px
+══════════════════════════════ */
+@media (max-width: 768px) {
+  .hero {
+    padding: 0 1.75rem;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .yyWrap {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+  }
+
   .nameCharLeft,
-  .nameCharRight { font-size: clamp(3rem, 18vw, 4rem); }
-  .content { padding: 0 1.5rem 5rem; }
+  .nameCharRight {
+    font-size: clamp(2.8rem, 12vw, 4.5rem);
+  }
+
+  .subtitle   { font-size: 0.8rem; letter-spacing: 0.2em; }
+  .subtitleEn { font-size: 0.6rem; letter-spacing: 0.15em; }
+
+  .ticker { bottom: 2.5rem; }
+  .scrollCue { left: 1.75rem; }
+}
+
+/* ══════════════════════════════
+   SMALL PHONES  ≤ 400px
+══════════════════════════════ */
+@media (max-width: 400px) {
+  .hero    { padding: 0 1.25rem; gap: 1rem; }
+  .yyWrap  { width: 120px; height: 120px; }
+  .nameCharLeft,
+  .nameCharRight { font-size: clamp(2.4rem, 13vw, 3.5rem); }
+  .scrollCue { display: none; }
 }
