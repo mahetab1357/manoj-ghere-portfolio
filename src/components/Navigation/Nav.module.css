@@ -67,26 +67,33 @@
 
 /* Language picker */
 .langPicker {
-  display: flex; align-items: center; gap: 2px;
+  display: flex; align-items: center; gap: 3px;
   margin-right: 0.25rem;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 3px;
+  padding: 2px;
 }
 .langBtn {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.5rem;
-  letter-spacing: 0.1em;
+  font-size: 0.52rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #ffffff;
-  mix-blend-mode: difference;
-  padding: 0.25rem 0.45rem;
+  color: rgba(201,168,76,0.6);
+  padding: 0.22rem 0.5rem;
   border-radius: 2px;
-  border: 1px solid rgba(255,255,255,0.2);
-  opacity: 0.45;
-  transition: opacity 0.2s, border-color 0.2s;
+  border: none;
+  background: transparent;
+  transition: color 0.2s, background 0.2s;
+  cursor: pointer;
+  white-space: nowrap;
 }
-.langBtn:hover { opacity: 0.8; }
+.langBtn:hover { color: var(--gold); }
 .langBtnActive {
-  opacity: 1 !important;
-  border-color: rgba(255,255,255,0.75);
+  color: var(--yang-black) !important;
+  background: var(--gold) !important;
 }
 
 /* Mobile overlay language row */

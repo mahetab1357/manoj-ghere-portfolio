@@ -4,7 +4,10 @@ import YinYang from '../YinYang';
 import { useLang } from '../../hooks/useLanguage';
 import styles from './Hero.module.css';
 
-const NAME = 'MANOJ GHERE';
+// "MANOJ GHERE" — first 5 chars on dark side, space, last 5 on light side
+const LEFT_CHARS  = ['M','A','N','O','J'];
+const RIGHT_CHARS = ['G','H','E','R','E'];
+
 const TICKER_ITEMS = [
   'TAEKWONDO','태권도','KARATE','空手道','KUDO','くど','JUDO','柔道','WUSHU','武术',
 ];
@@ -13,13 +16,16 @@ export default function Hero() {
   const preTitleRef = useRef(null);
   const subtitleRef = useRef(null);
   const subEnRef    = useRef(null);
+  const ruleRef     = useRef(null);
   const tickerRef   = useRef(null);
   const scrollRef   = useRef(null);
   const yyRef       = useRef(null);
   const { tr } = useLang();
 
   useEffect(() => {
-    const chars = document.querySelectorAll(`.${styles.nameChar}`);
+    const leftChars  = document.querySelectorAll(`.${styles.nameCharLeft}`);
+    const rightChars = document.querySelectorAll(`.${styles.nameCharRight}`);
+    const space      = document.querySelector(`.${styles.nameSpace}`);
     const tl = gsap.timeline({ delay: 0.2 });
 
     const spinTween = gsap.to(yyRef.current, {
@@ -27,18 +33,27 @@ export default function Hero() {
     });
 
     tl
-      .to(yyRef.current, { opacity: 1, scale: 1, clearProps: 'scale', duration: 0.7, ease: 'power2.out',
-        onComplete: () => spinTween.play() })
-      .to(preTitleRef.current, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.3')
-      .fromTo(chars,
+      .to(yyRef.current, {
+        opacity: 1, scale: 1, clearProps: 'scale', duration: 0.7, ease: 'power2.out',
+        onComplete: () => spinTween.play(),
+      })
+      .to(preTitleRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+      .fromTo(leftChars,
         { y: 80, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power4.out', stagger: 0.04 },
-        '-=0.4'
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power4.out', stagger: 0.05 },
+        '-=0.3'
       )
-      .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.3')
-      .to(subEnRef.current,    { opacity: 0.6, y: 0, duration: 0.6 }, '-=0.4')
+      .to(space, { opacity: 1, duration: 0.1 }, '-=0.4')
+      .fromTo(rightChars,
+        { y: -80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power4.out', stagger: 0.05 },
+        '-=0.7'
+      )
+      .to(ruleRef.current, { width: '260px', duration: 0.8, ease: 'power2.out' }, '-=0.2')
+      .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+      .to(subEnRef.current,    { opacity: 0.55, y: 0, duration: 0.5 }, '-=0.3')
       .to(tickerRef.current,   { opacity: 1, duration: 0.5 }, '-=0.3')
-      .to(scrollRef.current,   { opacity: 1, y: 0, duration: 0.6 }, '-=0.3');
+      .to(scrollRef.current,   { opacity: 1, y: 0, duration: 0.5 }, '-=0.3');
 
     const onScroll = () => {
       if (window.scrollY > 60) gsap.to(scrollRef.current, { opacity: 0, duration: 0.3 });
@@ -69,13 +84,17 @@ export default function Hero() {
       <div className={styles.content}>
         <p ref={preTitleRef} className={styles.preTitle}>{tr.hero.pre}</p>
 
-        <h1 className={styles.name} aria-label={NAME}>
-          {NAME.split('').map((ch, i) => (
-            <span key={i} className={styles.nameChar}>
-              {ch === ' ' ? ' ' : ch}
-            </span>
+        <h1 className={styles.name} aria-label="Manoj Ghere">
+          {LEFT_CHARS.map((ch, i) => (
+            <span key={`l${i}`} className={styles.nameCharLeft}>{ch}</span>
+          ))}
+          <span className={styles.nameSpace}>&nbsp;</span>
+          {RIGHT_CHARS.map((ch, i) => (
+            <span key={`r${i}`} className={styles.nameCharRight}>{ch}</span>
           ))}
         </h1>
+
+        <div ref={ruleRef} className={styles.nameRule} />
 
         <p ref={subtitleRef} className={styles.subtitle}>
           {tr.hero.subtitle}
