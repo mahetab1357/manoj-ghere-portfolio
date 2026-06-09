@@ -1,0 +1,185 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #030208;
+  overflow: hidden;
+  padding: 8rem 2rem;
+}
+
+.bgLines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(196,146,42,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196,146,42,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 700px;
+}
+
+.inkCircleWrap {
+  position: relative;
+  margin-bottom: 2rem;
+}
+.inkCircle {
+  width: min(240px, 60vw);
+  height: min(240px, 60vw);
+}
+.inkPath {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+.inkPath.drawn {
+  animation: inkDraw 2s cubic-bezier(0.16,1,0.3,1) 0.2s forwards;
+}
+.innerKanji {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-jp);
+  font-size: 3.5rem;
+  color: rgba(196,146,42,0.3);
+  pointer-events: none;
+}
+
+.heading {
+  font-family: var(--font-hero);
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--parchment);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.subheading {
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  color: var(--dawn-gold);
+  letter-spacing: 0.25em;
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+}
+.bio {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.8;
+  color: rgba(232,220,200,0.62);
+  max-width: 50ch;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+/* Info cards */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+.infoCard {
+  border: 1px solid rgba(196,146,42,0.12);
+  padding: 1.2rem;
+  border-radius: 3px;
+  transition: border-color 0.3s;
+}
+.infoCard:hover { border-color: rgba(196,146,42,0.38); }
+.infoIcon { font-size: 1.4rem; margin-bottom: 0.5rem; display: block; }
+.infoLabel {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  color: var(--dawn-gold);
+  opacity: 0.65;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.infoValue {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--parchment);
+  opacity: 0.8;
+}
+
+/* CTA Button */
+.cta {
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-hero);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--parchment);
+  border: 1px solid rgba(196,146,42,0.45);
+  background: transparent;
+  padding: 16px 48px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: color 0.4s;
+  margin-bottom: 2.5rem;
+}
+.cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--dawn-gold);
+  transform: translateX(-101%);
+  transition: transform 0.45s var(--ease-cinematic);
+}
+.cta:hover { color: #040403; }
+.cta:hover::before { transform: translateX(0); }
+.ctaText { position: relative; z-index: 1; }
+
+/* Social links */
+.socials {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.socialLink {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(196,146,42,0.5);
+  text-decoration: none;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.socialLink:hover { color: var(--dawn-gold); }
+.socialDot { width: 3px; height: 3px; border-radius: 50%; background: rgba(196,146,42,0.3); }
+
+/* Footer note */
+.footer {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  color: rgba(196,146,42,0.25);
+  white-space: nowrap;
+}
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(25px); }
+
+@media (max-width: 640px) {
+  .infoGrid { grid-template-columns: 1fr; }
+}

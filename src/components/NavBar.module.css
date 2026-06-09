@@ -1,0 +1,67 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(5,8,16,0.85) 0%, transparent 100%);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.logo {
+  pointer-events: all;
+  font-family: var(--font-jp);
+  font-size: 1.4rem;
+  color: var(--dawn-gold);
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+.logo:hover { opacity: 1; }
+
+.links {
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.links a {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232,220,200,0.65);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.links a:hover { color: var(--dawn-gold); }
+
+.audioBtn {
+  pointer-events: all;
+  background: none;
+  border: 1px solid rgba(196,146,42,0.35);
+  color: rgba(232,220,200,0.6);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s;
+  text-transform: uppercase;
+}
+.audioBtn:hover { border-color: var(--dawn-gold); color: var(--dawn-gold); }
+.audioBtn.active { background: rgba(196,146,42,0.12); border-color: var(--dawn-gold); color: var(--dawn-gold); }
+
+@media (max-width: 768px) {
+  .links { display: none; }
+  .nav { padding: 1rem 1.5rem; }
+}

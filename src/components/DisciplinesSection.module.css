@@ -1,0 +1,169 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.panel {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sceneOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(5,8,16,0.3) 0%, rgba(5,8,16,0.75) 100%);
+  pointer-events: none;
+}
+
+/* Text content */
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 5rem 4rem;
+  width: 50%;
+  background: linear-gradient(to right, rgba(5,8,16,0.88) 0%, transparent 100%);
+}
+
+.contentRight {
+  margin-left: auto;
+  background: linear-gradient(to left, rgba(5,8,16,0.88) 0%, transparent 100%);
+  padding-left: 3rem;
+  padding-right: 4rem;
+}
+
+.panelNumber {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: rgba(196,146,42,0.5);
+  margin-bottom: 1.5rem;
+}
+
+.accentBar {
+  width: 40px;
+  height: 3px;
+  background: var(--accent, var(--dawn-gold));
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.nativeName {
+  font-family: var(--font-jp);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: rgba(232,220,200,0.2);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.panelTitle {
+  font-family: var(--font-hero);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 600;
+  color: var(--parchment);
+  letter-spacing: 0.12em;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.nativeLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: var(--accent, var(--dawn-gold));
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.panelDesc {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.75;
+  color: rgba(232,220,200,0.65);
+  max-width: 44ch;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.certList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cert {
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  color: rgba(196,146,42,0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.certBullet {
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--accent, var(--dawn-gold));
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Discipline background kanji */
+.bgKanji {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-jp);
+  font-size: clamp(8rem, 18vw, 16rem);
+  color: rgba(255,255,255,0.03);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+/* Section header before panels */
+.sectionHeader {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(4,4,4,0.8);
+  padding: 1rem 4rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border-bottom: 1px solid rgba(196,146,42,0.1);
+  backdrop-filter: blur(8px);
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .content, .contentRight {
+    width: 100%;
+    padding: 2rem 1.5rem 4rem;
+    background: linear-gradient(to top, rgba(5,8,16,0.92) 0%, transparent 100%);
+    justify-content: flex-end;
+  }
+  .panelTitle { font-size: 2.2rem; }
+}

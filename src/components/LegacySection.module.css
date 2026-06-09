@@ -1,0 +1,122 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #030204;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(3,2,4,0.75) 100%);
+  pointer-events: none;
+}
+
+.petals {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.petal {
+  position: absolute;
+  top: -20px;
+  border-radius: 50% 50% 50% 0;
+  background: radial-gradient(circle, #ffbbcc 0%, #d4607a 100%);
+  animation: petalFall linear infinite;
+  opacity: 0.7;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 6rem 2rem;
+  max-width: 900px;
+}
+
+/* Radial burst SVG */
+.burst {
+  width: min(280px, 70vw);
+  height: min(280px, 70vw);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.counterWrap {
+  margin-bottom: 0.8rem;
+}
+.counter {
+  font-family: var(--font-hero);
+  font-size: clamp(4rem, 14vw, 9rem);
+  font-weight: 700;
+  color: var(--dawn-gold);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-shadow: 0 0 60px rgba(196,146,42,0.4);
+}
+
+.heading {
+  font-family: var(--font-hero);
+  font-size: clamp(1.8rem, 5vw, 3.8rem);
+  font-weight: 400;
+  color: var(--parchment);
+  letter-spacing: 0.12em;
+  margin-bottom: 0.8rem;
+}
+
+.subtext {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: rgba(232,220,200,0.6);
+  letter-spacing: 0.08em;
+  margin-bottom: 2.5rem;
+}
+
+.quote {
+  border-left: 2px solid rgba(196,146,42,0.35);
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  max-width: 48ch;
+}
+.quote p {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: rgba(232,220,200,0.82);
+  line-height: 1.7;
+  margin-bottom: 0.6rem;
+}
+.quote cite {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--dawn-gold);
+  opacity: 0.7;
+  font-style: normal;
+}
+
+.tagline {
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  color: rgba(196,146,42,0.55);
+}
+
+/* Scroll reveal */
+.revealUp { opacity: 0; transform: translateY(40px); }

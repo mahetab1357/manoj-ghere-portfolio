@@ -1,0 +1,51 @@
+.loader {
+  position: fixed; inset: 0;
+  background: var(--yang-black);
+  z-index: 10000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1.5rem;
+}
+
+.yy { opacity: 0; }
+
+.kanji {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  opacity: 0;
+  letter-spacing: 0.3em;
+}
+
+.bar {
+  width: 200px; height: 1px;
+  background: var(--yang-smoke);
+  position: relative; overflow: hidden;
+}
+
+.barFill {
+  position: absolute; inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: var(--text-xs);
+  letter-spacing: 0.4em;
+  color: var(--yang-text);
+  opacity: 0.5;
+  opacity: 0;
+  text-transform: uppercase;
+}
+
+.curtainTop,
+.curtainBot {
+  position: absolute; left: 0; right: 0;
+  height: 50%;
+  background: var(--yang-black);
+  z-index: 1;
+}
+.curtainTop { top: 0; transform-origin: top; }
+.curtainBot { bottom: 0; transform-origin: bottom; }

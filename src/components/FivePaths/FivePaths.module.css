@@ -1,0 +1,131 @@
+.wrapper { position: relative; }
+
+.panel {
+  height: 100vh; min-height: 600px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Alternate dark/light */
+.panel:nth-child(odd) .left  { background: var(--yang-black); }
+.panel:nth-child(odd) .right { background: var(--yin-white); }
+.panel:nth-child(even) .left  { background: var(--yin-white); }
+.panel:nth-child(even) .right { background: var(--yang-black); }
+
+.left {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 3rem;
+}
+
+.right {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 5rem 4rem;
+  position: relative;
+}
+
+/* Big kanji behind pose */
+.bgKanji {
+  position: absolute;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 20rem;
+  pointer-events: none;
+  opacity: 0.05;
+  color: var(--gold);
+  user-select: none;
+}
+
+/* SVG pose */
+.pose {
+  position: relative; z-index: 2;
+  width: 180px; height: 180px;
+}
+.posePath {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.posePathFilled { fill: var(--gold); }
+
+/* Right content */
+.panel:nth-child(even) .right { color: var(--yang-text); }
+.panel:nth-child(odd)  .right { color: var(--yin-text); }
+
+.panelNum {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+  opacity: 0;
+}
+.goldLine {
+  width: 60px; height: 1px;
+  background: var(--gold);
+  margin-bottom: 1.5rem;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.nativeName {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+  display: block;
+  opacity: 0;
+}
+.disciplineName {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+}
+.nativeLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--text-xs);
+  color: var(--gold);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: block;
+  opacity: 0;
+}
+.desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  opacity: 0.75;
+  max-width: 420px;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+}
+.certs {
+  display: flex; flex-direction: column; gap: 0.4rem;
+  opacity: 0;
+}
+.cert {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.cert::before {
+  content: ''; display: block;
+  width: 16px; height: 1px;
+  background: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .panel { grid-template-columns: 1fr; height: auto; min-height: auto; }
+  .left { padding: 4rem 2rem 2rem; min-height: 40vh; }
+  .right { padding: 2rem; }
+  .bgKanji { font-size: 10rem; }
+}

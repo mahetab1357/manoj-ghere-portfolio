@@ -1,0 +1,47 @@
+:root {
+  --yin-white:  #F8F6F1;
+  --yin-cream:  #EDE9E0;
+  --yin-mist:   #D4CFC4;
+  --yin-text:   #1A1814;
+
+  --yang-black:    #0D0D0B;
+  --yang-charcoal: #1C1C19;
+  --yang-smoke:    #2E2E2A;
+  --yang-text:     #F0EDE6;
+
+  --gold:       #C9A84C;
+  --gold-muted: #8B6914;
+  --gold-pale:  #F5E6C0;
+  --blood:      #8B1A1A;
+  --blood-light:#C4302B;
+
+  --ease:   cubic-bezier(0.76, 0, 0.24, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.25rem;
+  --text-xl:   1.5rem;
+  --text-2xl:  2rem;
+  --text-3xl:  3rem;
+  --text-4xl:  5rem;
+  --text-5xl:  8rem;
+  --text-6xl:  14rem;
+}
+
+[data-theme="dark"] {
+  --bg:      var(--yang-black);
+  --bg2:     var(--yang-charcoal);
+  --text:    var(--yang-text);
+  --border:  rgba(240,237,230,0.10);
+  --card-bg: var(--yang-charcoal);
+}
+
+[data-theme="light"] {
+  --bg:      var(--yin-white);
+  --bg2:     var(--yin-cream);
+  --text:    var(--yin-text);
+  --border:  rgba(26,24,20,0.12);
+  --card-bg: #ffffff;
+}

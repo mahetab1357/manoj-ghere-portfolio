@@ -1,0 +1,181 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #030810;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Kanji rain */
+.kanjiRain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+.kanjiColumn {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  color: rgba(196,146,42,0.18);
+  font-family: var(--font-jp);
+  animation: kanjiRain linear infinite;
+  will-change: transform;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.inkCircle {
+  position: absolute;
+  width: min(360px, 80vw);
+  height: min(360px, 80vw);
+  opacity: 0.65;
+}
+.inkCirclePath {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: inkDraw 2s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+}
+
+.kanjiWatermark {
+  position: absolute;
+  font-family: var(--font-jp);
+  font-size: clamp(10rem, 30vw, 18rem);
+  color: rgba(196,146,42,0.025);
+  letter-spacing: 0.1em;
+  user-select: none;
+  pointer-events: none;
+}
+
+.preTitle {
+  margin-bottom: 1.2rem;
+  text-align: center;
+  opacity: 0;
+}
+
+.name {
+  font-family: var(--font-hero);
+  font-size: clamp(2.2rem, 7vw, 6.5rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--parchment);
+  text-align: center;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  perspective: 800px;
+}
+.nameChar {
+  display: inline-block;
+  opacity: 0;
+}
+
+.subTitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.2vw, 1.5rem);
+  color: rgba(232,220,200,0.72);
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 2.4rem;
+  opacity: 0;
+}
+.subDivider {
+  color: var(--dawn-gold);
+  margin: 0 0.8rem;
+  opacity: 0.6;
+}
+
+/* Marquee ticker */
+.ticker {
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5rem 0;
+  border-top:    1px solid rgba(196,146,42,0.15);
+  border-bottom: 1px solid rgba(196,146,42,0.15);
+  opacity: 0;
+}
+.tickerTrack {
+  display: flex;
+  white-space: nowrap;
+  animation: tickerScroll 18s linear infinite;
+}
+.tickerItem {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(196,146,42,0.55);
+  padding: 0 2.5rem;
+}
+.tickerDot {
+  margin-left: 2.5rem;
+  color: var(--dawn-gold);
+}
+
+/* Scroll cue */
+.scrollCue {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+}
+.chevron {
+  width: 20px;
+  height: 20px;
+  border-right: 1.5px solid rgba(196,146,42,0.5);
+  border-bottom: 1.5px solid rgba(196,146,42,0.5);
+  transform: rotate(45deg);
+  animation: floatY 2s ease-in-out infinite;
+}
+.scrollLabel {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(196,146,42,0.45);
+}
+
+/* Mountain silhouette SVG overlay */
+.mountainSilhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+.mountainSilhouette svg { width: 100%; display: block; }
+
+/* Vignette */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(3,5,12,0.7) 100%);
+  pointer-events: none;
+  z-index: 4;
+}
